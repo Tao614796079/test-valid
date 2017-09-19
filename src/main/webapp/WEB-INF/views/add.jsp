@@ -26,7 +26,7 @@
             name:name,age:age
         }, function (result) {
             console.log(result)
-            alert(result.code_msg);
+            alert(result);
         });
     }
 </script>

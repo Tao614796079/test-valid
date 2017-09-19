@@ -2,6 +2,7 @@ package com.biz.vo;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.NotBlank;
 
 /**
  * StudentReqVO
@@ -12,8 +13,10 @@ import javax.validation.constraints.NotNull;
  * @see
  */
 public class StudentReqVO {
-    @NotNull
+
+    @NotBlank
     private String name;
+
     @NotNull(message = "年龄不能为空且为正整数")
     @Min(value = 0,message = "年龄不能为空且为正整数")
     private Integer age;

@@ -4,9 +4,6 @@ import com.biz.vo.BaseRespVO;
 import com.biz.vo.StudentReqVO;
 import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping("/student")
-public class StudentController {
+public class StudentController extends BaseController {
 
     @RequestMapping(value = "toAdd")
     public String toAdd() {
@@ -30,17 +27,9 @@ public class StudentController {
 
     @ResponseBody
     @PostMapping(value = "/add")
-    public BaseRespVO add(@Valid StudentReqVO student, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return new BaseRespVO(400, bindingResult.getFieldError().getDefaultMessage());
-        } else {
-            //do something...
-            return new BaseRespVO();
-        }
+    public BaseRespVO add(@Valid StudentReqVO student) {
+        //TODO
+        return new BaseRespVO();
     }
 
-    @InitBinder//必须有参数WebDataBinder
-    public void initBinder(WebDataBinder binder) {
-        binder.registerCustomEditor(Integer.class, new NumberPropertyEditor());
-    }
 }

@@ -1,4 +1,4 @@
-package com.biz.controller;
+package com.biz.editor;
 
 import java.beans.PropertyEditorSupport;
 import org.apache.commons.lang3.math.NumberUtils;
@@ -13,7 +13,6 @@ import org.apache.commons.lang3.math.NumberUtils;
  */
 public class NumberPropertyEditor extends PropertyEditorSupport {
     public void setAsText(String text) {
-        System.out.println("使用自己的编辑器。");
         if (text != null && NumberUtils.isParsable(text)) {
             Integer number = Integer.parseInt(text);
             setValue(number);
