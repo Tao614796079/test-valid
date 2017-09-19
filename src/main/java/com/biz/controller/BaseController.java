@@ -11,7 +11,6 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.context.request.WebRequest;
 
 /**
  * BaseController
@@ -32,16 +31,16 @@ public class BaseController {
      * @throws IOException
      */
     @ExceptionHandler(BindException.class)
-    public void validExceptionHandler(BindException e, WebRequest request, HttpServletResponse response) throws IOException {
+    public void validExceptionHandler(BindException e, HttpServletResponse response) throws IOException {
         List<FieldError> fieldErrors = e.getBindingResult().getFieldErrors();
         Map<String, String> map = fieldErrors.stream().collect(Collectors.toMap(FieldError::getField, FieldError::getDefaultMessage));
         response.setContentType("text/html;charset=UTF-8");
         response.getWriter().println(map);
         response.flushBuffer();
     }
+
     /**
      * 注册参数编辑器
-     * @param binder
      */
     @InitBinder//必须有参数WebDataBinder
     public void initBinder(WebDataBinder binder) {
